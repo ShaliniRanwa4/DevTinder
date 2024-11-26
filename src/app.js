@@ -4,21 +4,13 @@ const app= express();
 
 
 
-app.get("/user",(req,res)=>{
+app.get("/user/:userId",(req,res)=>{
+    console.log(req.params)
     res.send("user get request")
 })
 
-app.use("/user",(req,res)=>{
-    res.send("newwwwwww")
-})
 
-app.post("/user",(req,res)=>{
-    res.send({name:"shalini ",age: 5})
-})
 
-app.delete("/user",(req,res)=>{
-    res.send("delete user")
-})
 
 app.listen(7777, ()=>{
     console.log("server started")
