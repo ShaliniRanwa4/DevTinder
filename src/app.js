@@ -1,15 +1,22 @@
 const express=require("express")
 
 const app= express();
+const { adminAuth }=require("./middlewares/auth")
 
+app.use("/admin",adminAuth)
 
-
-app.get("/user/:userId",(req,res)=>{
-    console.log(req.params)
-    res.send("user get request")
+app.get("/user",(req,res)=>{
+    res.send("userrrrrrrr")
 })
 
 
+app.get("/admin/addUser",(req,res)=>{
+    res.send("user added successfully")
+});
+
+app.get("/admin/deleteUser",(req,res)=>{
+    res.send("user deleted successfully")
+})
 
 
 app.listen(7777, ()=>{
