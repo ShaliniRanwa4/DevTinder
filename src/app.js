@@ -2,20 +2,22 @@ const express=require("express")
 
 const app= express();
 
-app.use("/test",(req,res)=>{
-    res.send("testtttttttttt")
+
+
+app.get("/user",(req,res)=>{
+    res.send("user get request")
 })
 
-// app.use("/shalu",(req,res)=>{
-//     res.send("shaluuuuuuuuuu")
-// })
-
-app.use("/miss",(req,res)=>{
-    res.send("misss ")
+app.use("/user",(req,res)=>{
+    res.send("newwwwwww")
 })
 
-app.use("/",(req,res)=>{
-    res.send("helllooooooooooo everyone")
+app.post("/user",(req,res)=>{
+    res.send({name:"shalini ",age: 5})
+})
+
+app.delete("/user",(req,res)=>{
+    res.send("delete user")
 })
 
 app.listen(7777, ()=>{
