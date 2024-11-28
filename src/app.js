@@ -2,6 +2,7 @@ const express = require("express");
 const { connectDB } = require("./config/database");
 const app = express();
 const User = require("./models/user");
+const { Error } = require("mongoose");
 app.use(express.json());
 
 app.post("/signup", async (req, res) => {
@@ -11,7 +12,7 @@ app.post("/signup", async (req, res) => {
     await user.save();
     res.send("user added");
   } catch (err) {
-    res.status(401).send("something went wrong");
+    res.status(401).send("something went wrong"+err.message);
   }
 });
 
@@ -56,10 +57,10 @@ app.patch("/user",async(req,res)=>{
     const userId=req.body.userId;
     const data=req.body;
     try{
-     const user= await User.findByIdAndUpdate({_id:userId},data)
+     const user= await User.findByIdAndUpdate({_id:userId},data,{runValidators:true})
      res.send("user updated successfully")
     }catch(err){
-        res.send("something went wrong")
+        res.send(" Update failed: "+err.message)
     }
 })
 
