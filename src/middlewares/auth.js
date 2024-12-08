@@ -1,10 +1,22 @@
-const adminAuth=(req,res,next)=>{
-    const token="xxx";
-    const isAdminAuth= token==="xxx";
-    if(!isAdminAuth){
-        res.status(403).send("access denied");
-    }else{
-        next();
+const jwt = require("jsonwebtoken");
+const User = require("../models/User");
+
+const userAuth = async (req, res, next) => {
+  try {
+    const {token} = req.cookies;
+    if (!token) {
+      throw new Error("token not found please login first");
     }
-}
-module.exports={adminAuth}
+    const decodedData = await jwt.verify(token, "Dev@Tinder$123");
+    const { _id } = decodedData;
+    const user = await User.findById(_id);
+    if (!user) {
+      throw new Error("user not found");
+    }
+    req.user=user
+    next();
+  } catch (err) {
+    res.status(400).send("ERROR:"+err.message);
+  }
+};
+module.exports = { userAuth };
