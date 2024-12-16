@@ -41,12 +41,12 @@ authRouter.post("/login", async (req, res) => {
       res.cookie("token", token, {
         expires: new Date(Date.now() + 8 * 3600000),
       });
-      res.send("login successfully");
+      res.json(user );
     } else {
-      throw new Error("invalid password !! try again");
+      throw new Error("invalid credentials !! try again");
     }
   } catch (err) {
-    res.status(401).send("ERROR:" + err.message);
+    res.status(400).send("ERROR:" + err.message);
   }
 });
 

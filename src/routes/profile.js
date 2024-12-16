@@ -7,7 +7,7 @@ const { validateEditData, validateEditPassword } = require("../utils/validate");
 profileRouter.get("/profile/view", userAuth, async (req, res) => {
   try {
     const user = req.user;
-    res.send(user);
+    res.json(user);
   } catch (err) {
     res.status(400).send("ERROR:" + err.message);
   }
@@ -24,27 +24,28 @@ profileRouter.patch("/profile/edit", userAuth, async (req, res) => {
     Object.keys(req.body).forEach((key) => (loggedInuser[key] = req.body[key]));
     // console.log(loggedInuser);
     await loggedInuser.save()
-    res.send(`${loggedInuser.firstName} your profile updated successfuly`);
+    res.json({message:`${loggedInuser.firstName} your profile updated successfuly`,
+    data:loggedInuser});
   } catch (err) {
     res.status(400).send("ERROR:" + err.message);
   }
 });
 
 
-profileRouter.patch("/profile/edit/password",userAuth,async(req,res)=>{
-  try{
-    const loggedInuser=req.user;
-    if(!validateEditPassword(req)){
-      throw new Error("you can only edit the password")
-    }
-    loggedInuser.password=req.body.password
-    // Object.keys(req.body).forEach((key) => (loggedInuser[key] = req.body[key]))
-    await loggedInuser.save()
-    res.send("password edited successfuly")
-  }catch(err){
-    res.status(400).send("ERROR:" + err.message)
-  }
+// profileRouter.patch("/profile/edit/password",userAuth,async(req,res)=>{
+//   try{
+//     const loggedInuser=req.user;
+//     if(!validateEditPassword(req)){
+//       throw new Error("you can only edit the password")
+//     }
+//     loggedInuser.password=req.body.password
+//     // Object.keys(req.body).forEach((key) => (loggedInuser[key] = req.body[key]))
+//     await loggedInuser.save()
+//     res.send("password edited successfuly")
+//   }catch(err){
+//     res.status(400).send("ERROR:" + err.message)
+//   }
 
-})
+// })
 
 module.exports = profileRouter;

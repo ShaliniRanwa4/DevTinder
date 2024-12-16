@@ -38,9 +38,11 @@ const userSchema = new mongoose.Schema(
     age: {
       type: Number,
       min: 18,
+      default:20
     },
     gender: {
       type: String,
+      
       validate(value) {
         if (!["male", "female", "other"].includes(value)) {
           throw new Error("gender data is not valid");
@@ -49,6 +51,7 @@ const userSchema = new mongoose.Schema(
     },
     photoUrl: {
       type: String,
+      default:"https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp",
       validate(value) {
         if (!validator.isURL(value)) {
           throw new Error("Invalid photo url address");
