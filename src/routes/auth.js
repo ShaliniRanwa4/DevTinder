@@ -1,7 +1,7 @@
 const express = require("express");
 const authRouter = express.Router();
 const { validateSignUpData } = require("../utils/validate");
-const User = require("../models/User");
+const User = require("../models/user");
 const bycrpt = require("bcrypt");
 const { now } = require("mongoose");
 // const {userAuth}=require("./middlewares/auth")
