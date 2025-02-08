@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const { connectDB } = require("./config/database");
 const app = express();
@@ -6,9 +7,14 @@ const http=require("http")
 
 const { Error } = require("mongoose");
 const cookieParser = require("cookie-parser");
+const allowedOrigins = [
+  "http://localhost:5173", // Local frontend (for development)
+  "https://dev-tinder-web-kappa.vercel.app" // Deployed frontend (for production)
+];
+
 
 app.use(cors({
-  origin: 'http://localhost:5173', 
+  origin: allowedOrigins, 
   credentials: true, }
 ));
 app.use(express.json());
