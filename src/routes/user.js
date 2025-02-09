@@ -2,7 +2,7 @@ const express = require("express");
 const { userAuth } = require("../middlewares/auth");
 const ConnectionRequest = require("../models/connectionrequest");
 const { set } = require("mongoose");
-const User = require("../models/user");
+const {User} = require("../models/user");
 
 const userRouter = express.Router();
 const USER_SAFE_DATA = [

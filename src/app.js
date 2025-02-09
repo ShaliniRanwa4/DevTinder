@@ -27,10 +27,6 @@ const userRouter = require("./routes/user");
 const { initializeSocket } = require("./utils/socket");
 const { chatRouter } = require("./routes/chat");
 
-// app.options('/login', cors({
-//   origin: 'http://localhost:5173',
-//   credentials: true,
-// }));
 
 
 app.use("/",authRouter)
@@ -39,6 +35,7 @@ app.use("/",requestRouter)
 app.use("/",userRouter)
 app.use("/",chatRouter)
 
+// console.log(process.env.MONGO_URI)
 
 const server=http.createServer(app)
 initializeSocket(server)
