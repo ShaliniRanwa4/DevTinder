@@ -10,7 +10,7 @@ const cookieParser = require("cookie-parser");
 const allowedOrigins = [
   "http://localhost:5173", // Local frontend (for development)
   // "https://dev-tinder-web-kappa.vercel.app" // Deployed frontend (for production)
- " https://dev-tinder-web-qzcn.vercel.app/"
+ " https://dev-tinder-web-qzcn.vercel.app"
 ];
 
 
