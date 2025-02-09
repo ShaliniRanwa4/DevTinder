@@ -9,11 +9,21 @@ const getSecretRoomId = (userId, targetUserId) => {
     .digest("hex");
 };
 
+
 const initializeSocket = (server) => {
+  const allowedOrigins = [
+    "http://localhost:5173", // Local frontend (for development)
+    // "https://dev-tinder-web-kappa.vercel.app" // Deployed frontend (for production)
+   " https://dev-tinder-web-qzcn.vercel.app"
+  ];
+  
+
   const io = socket(server, {
     cors: {
-      origin: "http://localhost:5173",
+      origin: allowedOrigins,
+      credentials: true,
     },
+     path: "/socket.io",
   });
 
   io.on("connection", (socket) => {
