@@ -14,16 +14,27 @@ const initializeSocket = (server) => {
   const allowedOrigins = [
     "http://localhost:5173", // Local frontend (for development)
     // "https://dev-tinder-web-kappa.vercel.app" // Deployed frontend (for production)
-   " https://dev-tinder-web-qzcn.vercel.app"
+   "https://dev-tinder-web-qzcn.vercel.app"
   ];
   
 
   const io = socket(server, {
+    // cors: {
+    //   origin: allowedOrigins,
+    //   credentials: true,
+    // },
+    //  path: "/socket.io",
     cors: {
-      origin: allowedOrigins,
+      origin: (origin, callback) => {
+        if (!origin || allowedOrigins.includes(origin)) {
+          callback(null, true);
+        } else {
+          callback(new Error("Not allowed by CORS"));
+        }
+      },
       credentials: true,
     },
-     path: "/socket.io",
+    path: "/socket.io",
   });
 
   io.on("connection", (socket) => {

@@ -10,15 +10,28 @@ const cookieParser = require("cookie-parser");
 const allowedOrigins = [
   "http://localhost:5173", // Local frontend (for development)
   // "https://dev-tinder-web-kappa.vercel.app" // Deployed frontend (for production)
- " https://dev-tinder-web-qzcn.vercel.app"
+ "https://dev-tinder-web-qzcn.vercel.app"
 ];
 
 
-app.use(cors({
-  origin: allowedOrigins, 
+app.use(cors(
+  // {
+  // origin: allowedOrigins, 
+  // credentials: true,
+  // allowedHeaders: ["Content-Type", "Authorization"],
+  // methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"] }
+{
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   credentials: true,
   allowedHeaders: ["Content-Type", "Authorization"],
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"] }
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+}
 ));
 app.use(express.json());
 app.use(cookieParser());
