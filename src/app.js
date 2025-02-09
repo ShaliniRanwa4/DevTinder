@@ -60,7 +60,7 @@ const PORT = process.env.PORT || 7777;
 connectDB()
   .then(() => {
     console.log("Database connection established");
-    server.listen(PORT, () => {
+    server.listen(PORT,'0.0.0.0', () => {
       console.log("server started");
     });
   })
