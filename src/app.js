@@ -17,23 +17,23 @@ const allowedOrigins = [
 
 
 app.use(cors(
-  // {
-  // origin: allowedOrigins, 
-  // credentials: true,
-  // allowedHeaders: ["Content-Type", "Authorization"],
-  // methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"] }
-{
-  origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
+  {
+  origin: allowedOrigins, 
   credentials: true,
   allowedHeaders: ["Content-Type", "Authorization"],
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-}
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"] }
+// {
+//   origin: (origin, callback) => {
+//     if (!origin || allowedOrigins.includes(origin)) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error("Not allowed by CORS"));
+//     }
+//   },
+//   credentials: true,
+//   allowedHeaders: ["Content-Type", "Authorization"],
+//   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+// }
 ));
 app.use(express.json());
 app.use(cookieParser());
