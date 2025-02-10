@@ -8,7 +8,7 @@ const http=require("http")
 
 const { Error } = require("mongoose");
 const cookieParser = require("cookie-parser");
-const PORT = process.env.PORT
+const PORT = process.env.PORT||7777
 const allowedOrigins = [
   "http://localhost:5173", // Local frontend (for development)
   // "https://dev-tinder-web-kappa.vercel.app" // Deployed frontend (for production)
