@@ -1,7 +1,7 @@
 const express = require("express");
 const profileRouter = express.Router();
 const { userAuth } = require("../middlewares/auth");
-// const { validate } = require("../models/User");
+
 const { validateEditData, validateEditPassword } = require("../utils/validate");
 
 profileRouter.get("/profile/view", userAuth, async (req, res) => {
@@ -32,20 +32,6 @@ profileRouter.patch("/profile/edit", userAuth, async (req, res) => {
 });
 
 
-// profileRouter.patch("/profile/edit/password",userAuth,async(req,res)=>{
-//   try{
-//     const loggedInuser=req.user;
-//     if(!validateEditPassword(req)){
-//       throw new Error("you can only edit the password")
-//     }
-//     loggedInuser.password=req.body.password
-//     // Object.keys(req.body).forEach((key) => (loggedInuser[key] = req.body[key]))
-//     await loggedInuser.save()
-//     res.send("password edited successfuly")
-//   }catch(err){
-//     res.status(400).send("ERROR:" + err.message)
-//   }
 
-// })
 
 module.exports = profileRouter;

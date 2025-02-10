@@ -1,3 +1,4 @@
+require("dotenv").config();
 const validator=require("validator")
 const validateSignUpData=(req)=>{
 
