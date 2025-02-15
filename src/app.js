@@ -14,8 +14,9 @@ const allowedOrigins = [
   // "https://dev-tinder-web-kappa.vercel.app" // Deployed frontend (for production)
 //  "https://dev-tinder-web-qzcn.vercel.app"
 // "https://dev-tinder-web-34t8.vercel.app/"
-"https://dev-tinder-web-5qx5.vercel.app"
+// "https://dev-tinder-web-5qx5.vercel.app"
 // "https://dev-tinder-web-5qx5-5xyo2jj7g-shalini-ranwas-projects.vercel.app"
+"https://dev-tinder-web-co6f.vercel.app"
 ];
 
 
