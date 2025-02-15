@@ -18,7 +18,8 @@ const allowedOrigins = [
 
 app.use(cors(
   {
-  origin: allowedOrigins, 
+  // origin: allowedOrigins, 
+  origin: "*",
   credentials: true,
   allowedHeaders: ["Content-Type", "Authorization"],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"] }
@@ -46,6 +47,11 @@ const { initializeSocket } = require("./utils/socket");
 const { chatRouter } = require("./routes/chat");
 
 
+app.use((req, res, next) => {
+  console.log(`Incoming request: ${req.method} ${req.url}`);
+  next();
+});
+
 
 app.use("/",authRouter)
 app.use("/",profileRouter)
@@ -63,7 +69,7 @@ initializeSocket(server)
 connectDB()
   .then(() => {
     console.log("Database connection established");
-    server.listen(PORT,'0.0.0.0', () => {
+    server.listen(PORT, () => {
       console.log("server started");
     });
   })
