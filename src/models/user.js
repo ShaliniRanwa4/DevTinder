@@ -1,7 +1,7 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
 const validator = require("validator");
-const bycrpt = require("bcrypt");
+const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const userSchema = new mongoose.Schema(
@@ -83,7 +83,7 @@ userSchema.methods.getJWT = async function () {
 userSchema.methods.validatePassword = async function (userInputPassword) {
   const user = this;
   const passwordHash = user.password;
-  const isPasswordValid = await bycrpt.compare(userInputPassword, passwordHash);
+  const isPasswordValid = await bcrypt.compare(userInputPassword, passwordHash);
   return isPasswordValid
 };
 

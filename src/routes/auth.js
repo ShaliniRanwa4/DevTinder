@@ -3,7 +3,7 @@ const express = require("express");
 const authRouter = express.Router();
 const { validateSignUpData } = require("../utils/validate");
 const {User} = require("../models/user");
-const bycrpt = require("bcrypt");
+const bcrypt = require("bcrypt");
 const { now } = require("mongoose");
 // const {userAuth}=require("./middlewares/auth")
 
@@ -12,7 +12,7 @@ authRouter.post("/signup", async (req, res) => {
   try {
     validateSignUpData(req);
     const { firstName, lastName, emailId, password } = req.body;
-    const passwordHash = await bycrpt.hash(password, 10);
+    const passwordHash = await bcrypt.hash(password, 10);
 
     const user = new User({
       firstName,
@@ -35,6 +35,7 @@ authRouter.post("/signup", async (req, res) => {
 
 authRouter.post("/login", async (req, res) => {
   try {
+    console.log("Login request received:", req.body);
     const { emailId, password } = req.body;
     const user = await User.findOne({ emailId: emailId });
     if (!user) {
