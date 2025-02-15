@@ -14,7 +14,8 @@ const initializeSocket = (server) => {
   const allowedOrigins = [
     "http://localhost:5173", // Local frontend (for development)
     // "https://dev-tinder-web-kappa.vercel.app" // Deployed frontend (for production)
-   "https://dev-tinder-web-qzcn.vercel.app"
+  //  "https://dev-tinder-web-qzcn.vercel.app"
+  "https://dev-tinder-web-34t8.vercel.app/"
   ];
   
 

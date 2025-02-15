@@ -12,14 +12,15 @@ const PORT = process.env.PORT||7777
 const allowedOrigins = [
   "http://localhost:5173", // Local frontend (for development)
   // "https://dev-tinder-web-kappa.vercel.app" // Deployed frontend (for production)
- "https://dev-tinder-web-qzcn.vercel.app"
+//  "https://dev-tinder-web-qzcn.vercel.app"
+"https://dev-tinder-web-34t8.vercel.app/"
 ];
 
 
 app.use(cors(
   {
-  // origin: allowedOrigins, 
-  origin: "*",
+  origin: allowedOrigins, 
+  // origin: "*",
   credentials: true,
   allowedHeaders: ["Content-Type", "Authorization"],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"] }
