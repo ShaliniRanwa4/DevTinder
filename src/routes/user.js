@@ -12,6 +12,7 @@ const USER_SAFE_DATA = [
   "about",
   "gender",
   "age",
+  "photoUrl"
 ];
 
 userRouter.get("/user/request/received", userAuth, async (req, res) => {
@@ -48,7 +49,7 @@ userRouter.get("/user/connection", userAuth, async (req, res) => {
     });
     res.json({ data });
   } catch (err) {
-    res.status(401).send("ERROR:" + err.message);
+    res.status(401).send("ERROR : " + err.message);
   }
 });
 
@@ -83,7 +84,7 @@ userRouter.get("/feed", userAuth, async (req, res) => {
 
     res.json({ data:user });
   } catch (err) {
-    res.status(401).send("ERROR:" + err.message);
+    res.status(401).send("ERROR : " + err.message);
   }
 });
 

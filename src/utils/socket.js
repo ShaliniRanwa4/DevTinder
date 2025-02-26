@@ -9,37 +9,17 @@ const getSecretRoomId = (userId, targetUserId) => {
     .digest("hex");
 };
 
-
-const initializeSocket = (server) => {
-  const allowedOrigins = [
-    "http://localhost:5173", // Local frontend (for development)
-    // "https://dev-tinder-web-kappa.vercel.app" // Deployed frontend (for production)
-  //  "https://dev-tinder-web-qzcn.vercel.app"
-  // "https://dev-tinder-web-34t8.vercel.app/"
-  // "https://dev-tinder-web-5qx5.vercel.app"
-  // "https://dev-tinder-web-5qx5-5xyo2jj7g-shalini-ranwas-projects.vercel.app"
-  "https://dev-tinder-web-co6f.vercel.app"
-  ];
   
 
+const initializeSocket = (server) => {
   const io = socket(server, {
-    // cors: {
-    //   origin: allowedOrigins,
-    //   credentials: true,
-    // },
-    //  path: "/socket.io",
     cors: {
-      origin: (origin, callback) => {
-        if (!origin || allowedOrigins.includes(origin)) {
-          callback(null, true);
-        } else {
-          callback(new Error("Not allowed by CORS"));
-        }
-      },
-      credentials: true,
+      origin: "http://localhost:5173",
     },
-    path: "/socket.io",
   });
+
+
+
 
   io.on("connection", (socket) => {
     socket.on("joinChat", ({ firstName, userId, targetUserId }) => {
