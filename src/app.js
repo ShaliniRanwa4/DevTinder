@@ -62,7 +62,7 @@
 
 
 const express = require("express");
-const connectDB = require("./config/database");
+const {connectDB} = require("./config/database");
 const app = express();
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
@@ -85,9 +85,9 @@ const authRouter = require("./routes/auth");
 const profileRouter = require("./routes/profile");
 const requestRouter = require("./routes/request");
 const userRouter = require("./routes/user");
-const paymentRouter = require("./routes/payment");
-const initializeSocket = require("./utils/socket");
-const chatRouter = require("./routes/chat");
+// const paymentRouter = require("./routes/payment");
+const {initializeSocket} = require("./utils/socket");
+const {chatRouter} = require("./routes/chat");
 
 app.use("/", authRouter);
 app.use("/", profileRouter);
@@ -108,3 +108,4 @@ connectDB()
   .catch((err) => {
     console.error("Database cannot be connected!!");
   });
+
